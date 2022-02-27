@@ -1,0 +1,17 @@
+[
+    {
+        "id":1,
+        "gamename": "League of Legends",
+        "gamelogo": "https://i.hizliresim.com/ryveuz8.png"
+    },
+    {
+        "id":2,
+        "gamename": "CS:GO",
+        "gamelogo": "https://i.hizliresim.com/gqjm2o3.png"
+    },
+    {
+        "id":3,
+        "gamename": "VALORANT",
+        "gamelogo": "https://i.hizliresim.com/o88j7fi.png"
+    }
+]

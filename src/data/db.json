@@ -1,0 +1,15 @@
+{
+    "videos": [
+        {"id": 1,"categoryId":1,"url":"IDi7OT98MQs","thumbnail":"5HP1lPuC06I", "title":"DİLLERE DESTAN ELWİND","userName":"Patates Tim","viewCount":"96.903","createDate":5,"like":"4200","subs":"5636","comment":"Beğenmeyi unutmayın 👍 🔔 Zil'e tıklayıp bildirmleri açabilirsiniz tskler."},
+        {"id": 2,"categoryId":1,"url":"QM3qL_jGonA","thumbnail":"KLL_VXlpaCc", "title":"BABAG KEYİF VEREN","userName":"Patates Tim","viewCount":"115.903","createDate":3,"like":"3600","subs":"2625","comment":"►-- AÇIKLAMAYI OKU --► Merhaba arkadaşlar bugün yine rac10sal videomuz Beğenmeyi unutmayın 👍 🔔 Zile tıklayıp bildirmleri açabilirsiniz tskler."},
+        {"id": 3,"categoryId":2,"url":"ZSG4KtW-aU8","thumbnail":"jCFwvwtrpUM", "title":"S1MPLE WANTS AWP NERFED NOW","userName":"SynTV CS:GO & More","viewCount":"1.233","createDate":1,"like":"6480","subs":"7136","comment":"İNSTAGRAM: https://www.instagram.com/monchayi/ DC LİNK : https://discord.gg/Zup87ctVP4 "},
+        {"id": 4,"categoryId":2,"url":"beFrZ0Eq4AY","thumbnail":"87fe9B_bZnM", "title":"Best 400IQ BIGBRAIN PLAYS of 2021","userName":"CSGOpoetry","viewCount":"185.353","createDate":4,"like":"3570","subs":"1237","comment":"The Vol.2 of the Kanun&Guitar instrumental music album. Enjoy 1 hours of instrumental "},
+        {"id": 5,"categoryId":3,"url":"QSDPlu_UHwU","thumbnail":"j2bq7OL4i7E", "title":"BBL PAURA TURNUVADA 800 IQ HAREKET","userName":"WalranTV","viewCount":"37.741","createDate":6,"like":"6472","subs":"3463","comment":"fussilet Kuran Merkezi tarafından Nasser al Qatami'nin sesinden hazırlanmış Bakara Suresi "},
+        {"id": 6,"categoryId":3,"url":"DGe-MHU5ycs","thumbnail":"SpAZEZKcYdw", "title":"immortal maçım ama takımımda son of cNed var immortal maçım ama takımımda son of cNed var","userName":"cptNx","viewCount":"5.364","createDate":5,"like":"5823","subs":"4574","comment":"No copyright infringement intended  I do not own the rights to the song  I used audacity "}
+    ],
+    "categories": [
+        {"id":1,"name":"League of Legends"},
+        {"id":2,"name":"CS:Global Offensive"},
+        {"id":3,"name":"Valorant"}
+    ]
+}
