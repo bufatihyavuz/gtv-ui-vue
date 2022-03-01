@@ -8,7 +8,7 @@
     :breakpoint="500"
   >
     <q-btn
-      id="eastbtn"
+      id="btnDrawer"
       style="margin-left: 10px; margin-top: 5px"
       size="16px"
       dense
@@ -18,29 +18,59 @@
       @click="miniState = !miniState"
     ></q-btn>
 
-    <div v-for="djson in dJson" :key="djson">
+    <div v-for="data in menuItem" :key="data">
 
-      <router-link :to="'/GamesNew/'+ djson.id" style="text-decoration: none">
+      <router-link :to="'/categories/'+ data.id" style="text-decoration: none">
+
         <q-item id="logos" clickable v-ripple>
           <q-item-section aria-pressed="true" avatar>
-            <q-img width="40px" :src="djson.gamelogo"></q-img>
+            <q-img width="40px"  src="~assets/categories/lol.svg"/>
           </q-item-section>
-          <q-item-section id="gamename">{{ djson.gamename }}</q-item-section>
+          <q-item-section>{{ data.name }}</q-item-section>
         </q-item>
+
       </router-link>
+
     </div>
+
   </q-drawer>
 </template>
 
 <script>
-import json from "src/data/drawer.json";
+import VideoService from "src/services/VideoService";
 export default {
-  props: ["data"],
+
   data: () => ({
     drawer: false,
     miniState: true,
-    dJson: json,
+    menuItem:[]
   }),
+
+  methods : {
+
+    async getAll() {
+      await VideoService.getCategories().then(res => {
+        this.menuItem = res.data;
+        console.log(res)
+      })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
+  },
+
+  mounted(){
+    this.getAll();
+  },
+
+  watch : {
+    $route () {
+      this.getAll();
+    }
+
+  }
+
 };
 </script>
 

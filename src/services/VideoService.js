@@ -4,7 +4,7 @@ class VideoService {
         return http.get("/videos");
       }
 
-    getAllVideos(categoryId){
+    getVideosByCategoryId(categoryId){
       return http.get("/videos/categories/"+categoryId);
     }
 

@@ -29,10 +29,8 @@ export default {
   methods : {
 
     async getAll() {
-      console.log("listVideos girdi")
       await VideoService.getAll().then(res => {
         this.videos = res.data;
-        console.log(res)
       })
         .catch(e => {
           console.log(e);
@@ -42,13 +40,11 @@ export default {
   },
 
   mounted(){
-    console.log("mounta girdi")
     this.getAll();
   },
 
   watch : {
     $route () {
-      console.log('watcha girdi')
       this.getAll();
     }
 

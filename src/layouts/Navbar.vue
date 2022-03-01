@@ -23,7 +23,7 @@
       </div>
 
       <q-space />
-      <router-link to="/videoyukle" style="text-decoration: none">
+      <router-link to="/addVideo" style="text-decoration: none">
         <q-btn round text-color="grey-6" icon="video_call" flat />
       </router-link>
       <div class="q-gutter-sm row items-center no-wrap">
@@ -221,7 +221,7 @@ export default {
       if (!this.register)
         if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
           this.$q.notify({
-            icon: "done",
+            diloagIcon: "done",
             color: "positive",
             message: "Yetkiniz yok",
           });
@@ -288,9 +288,6 @@ export default {
   color: rgb(156, 156, 156);
 }
 
-#logos {
-  padding: 8px 14px 8px 8px;
-}
 #btnaccount {
   transition: 0.4s;
   box-shadow: 0px 0px 4px 0px #21ba45;
