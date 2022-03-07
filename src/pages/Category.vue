@@ -1,10 +1,10 @@
 <template>
-  <q-layout>
+  <q-layout class="maincolor">
     <navbar />
     <q-page-container>
       <q-btn
         @click="dialogIcon = true"
-        class="buttons q-ma-xs"
+        class="q-ma-xs q-mt-md q-mx-md"
         outline
         color="info"
         icon="filter_alt"
@@ -24,7 +24,7 @@
         </q-card>
       </q-dialog>
 
-      <q-btn-dropdown outline color="info" icon="sort" label="Sırala" class="buttons q-ma-xs" >
+      <q-btn-dropdown outline color="info" icon="sort" label="Sırala" class="q-my-xs q-mt-md" >
         <q-list>
           <q-item clickable v-close-popup>
             <q-item-section>
@@ -45,9 +45,9 @@
           </q-item>
         </q-list>
       </q-btn-dropdown>
-      <q-separator id="sep" />
+      <q-separator class="q-mt-md" />
 
-      <div>
+      <div class="row q-pa-sm">
         <card v-for="data in videos" :data="data" :key="data" />
       </div>
     </q-page-container>
@@ -99,14 +99,5 @@ export default {
   }
 }
 
-
 </script>
 
-<style>
-#sep{
-  margin: 20px 0 40px 0;
-}
-.buttons{
-  margin-top:20px;
-}
-</style>

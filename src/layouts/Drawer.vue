@@ -1,35 +1,38 @@
 <template>
   <q-drawer
-    id="drawer"
     v-model="drawer"
     show-if-above
+    mini-to-overlay
     :mini="miniState"
-    :width="220"
-    :breakpoint="500"
+    :width="210"
+    :breakpoint="100"
+    :mini-width="50"
   >
-    <q-btn
-      id="btnDrawer"
-      style="margin-left: 10px; margin-top: 5px"
-      size="16px"
-      dense
-      round
-      unelevated
-      icon="east"
-      @click="miniState = !miniState"
-    ></q-btn>
+
+    <div class="row">
+      <q-item-section class="text-subtitle2 q-mt-sm content-center" no-wrap v-show="categoryName"
+                      style="font-size:medium">Oyun Kategorileri</q-item-section>
+      <q-btn
+        class="transition q-mx-sm q-mt-xs "
+        dense
+        round
+        @click="changeMiniState(); rotate(); changeCategoryName();"
+        unelevated
+        v-bind:style="{transform: `rotate(${deg}deg)`}"
+        icon="east"
+      ></q-btn>
+    </div>
+
+    <q-separator class="q-mx-xs q-my-sm" />
 
     <div v-for="data in menuItem" :key="data">
 
-      <router-link :to="'/categories/'+ data.id" style="text-decoration: none">
-
-        <q-item id="logos" clickable v-ripple>
-          <q-item-section aria-pressed="true" avatar>
-            <q-img width="40px"  src="~assets/categories/lol.svg"/>
-          </q-item-section>
-          <q-item-section>{{ data.name }}</q-item-section>
-        </q-item>
-
-      </router-link>
+      <q-item :to="'/categories/'+ data.id" id="logos" clickable v-ripple>
+        <q-item-section aria-pressed="true" avatar>
+          <q-img width="40px"  :src="'/icons/categories/' + data.iconName"/>
+        </q-item-section>
+        <q-item-section>{{ data.name }}</q-item-section>
+      </q-item>
 
     </div>
 
@@ -38,12 +41,16 @@
 
 <script>
 import VideoService from "src/services/VideoService";
+import { ref } from 'vue'
 export default {
 
   data: () => ({
-    drawer: false,
-    miniState: true,
-    menuItem:[]
+    drawer: ref(false),
+    miniState: ref(true),
+    menuItem:[],
+    DrawBtn: ref(false),
+    deg: 0,
+    categoryName: ref(false),
   }),
 
   methods : {
@@ -56,6 +63,15 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+    rotate() {
+      this.deg += 180;
+    },
+    changeMiniState() {
+      this.miniState = !this.miniState
+    },
+    changeCategoryName() {
+      this.categoryName = !this.categoryName
     }
 
   },
@@ -75,19 +91,13 @@ export default {
 </script>
 
 <style>
-#drawer::-webkit-scrollbar {
-  display: none;
-}
-#drawer {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  float: left;
-}
 #logos {
   padding: 8px 14px 8px 8px;
 }
 #logos:hover {
   filter: brightness(120%);
+}
+.transition {
+  transition: transform 0.5s ease-in-out;
 }
 </style>

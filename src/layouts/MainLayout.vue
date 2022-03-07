@@ -1,11 +1,9 @@
 <template>
   <q-layout>
     <navbar />
-    <q-page-container>
-      <div>
-        <ul>
-          <card  v-for="data in videos" :data="data" :key="data" />
-        </ul>
+    <q-page-container class="maincolor">
+      <div class="row q-pa-sm">
+        <card  v-for="data in videos" :data="data" :key="data" />
       </div>
     </q-page-container>
   </q-layout>

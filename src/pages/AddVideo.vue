@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf" >
+  <q-layout class="maincolor" view="hHh lpR fFf" >
     <navbar />
     <q-page-container>
       <div class="row q-ma-xl no-wrap ">
