@@ -1,10 +1,10 @@
 <template>
-  <q-layout class="maincolor" view="hHh lpR fFf" >
+  <q-layout class="maincolor" view="hHh lpR fFf">
     <navbar />
     <q-page-container class="row">
       <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md">
         <q-card class="q-ma-xs q-px-md">
-          <h5 class="q-ma-md q-pt-lg">Video Ekle</h5>
+          <h5 class="q-my-md q-mx-md q-pt-lg">Video Ekle</h5>
           <q-card-section>
             <q-input v-model="ytVideoId" outlined square placeholder="Video ID" />
             <q-select
@@ -20,6 +20,26 @@
         </q-card>
       </li>
 
+      <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md">
+        <q-card class="q-ma-xs q-px-md">
+          <h5 class="q-my-md q-mx-md q-pt-lg">Video Sil</h5>
+          <q-card-section>
+            <q-input v-model="videoUrl" class="q-mb-md" outlined square placeholder="Video ID" />
+            <q-btn class="q-mb-md q-my-lg" @click="deleteVideo()" color="negative">SİL</q-btn>
+          </q-card-section>
+        </q-card>
+      </li>
+
+      <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md q-mb-md">
+        <q-card class="q-ma-xs q-px-md">
+          <h5 class="q-my-md q-mx-md q-pt-lg">Kategori Ekle</h5>
+          <q-card-section>
+            <q-input v-model="category.name" class="q-mb-md" label="Oyun İsmi" />
+            <q-input v-model="category.iconName" class="q-mb-md" label="Icon Adı" />
+            <q-btn class="q-my-lg" @click="addCategory()" color="primary">Ekle</q-btn>
+          </q-card-section>
+        </q-card>
+      </li>
     </q-page-container>
   </q-layout>
 </template>
@@ -35,27 +55,32 @@ export default {
 
 
   data: () => ({
-    ytVideoId : null,
-    categoryModel:ref(null) ,
-    categories : [
+    ytVideoId: null,
+    categoryModel: ref(null),
+    categories: [
       {
-        id : ref(null) ,
-        name : ""
+        id: ref(null),
+        name: ""
       }
     ],
-    categoryId:null,
-    videoInput : {
-      ytVideoId : null,
-      categoryId : null
+    categoryId: null,
+    videoInput: {
+      ytVideoId: null,
+      categoryId: null
+    },
+    videoUrl:null,
+    category: {
+      name:null,
+      iconName:null
     }
 
   }),
 
-  methods : {
+  methods: {
 
     async getCategories() {
       await VideoService.getCategories().then(res => {
-        this.categories =  res.data;
+        this.categories = res.data;
       })
         .catch(e => {
           console.log(e);
@@ -67,19 +92,33 @@ export default {
       this.videoInput.ytVideoId = this.ytVideoId;
       this.videoInput.categoryId = this.categoryModel.id;
       VideoService.saveVideos(this.videoInput).then(res => {
-          console.log("saveVideo res",res)
+        console.log("saveVideo res",res)
       })
-    }
+    },
+
+    deleteVideo() {
+      console.log("data.videoUrl",this.videoUrl)
+      VideoService.deleteVideo(this.videoUrl).then(res => {
+        console.log("saveVideo res", res)
+      })
+    },
+
+    addCategory() {
+      console.log("data.category",this.category)
+      VideoService.addCategory(this.category).then(res => {
+        console.log("addCategory res", res)
+      })
+    },
 
   },
 
   mounted() {
     console.log("mounted girdi")
-   this.getCategories();
+    this.getCategories();
   },
 
-  watch : {
-    $route () {
+  watch: {
+    $route() {
       console.log("watcha girdi")
       this.getCategories()
     },
@@ -98,5 +137,3 @@ export default {
 
 };
 </script>
-
-<style></style>
