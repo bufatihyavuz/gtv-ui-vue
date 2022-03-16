@@ -49,7 +49,7 @@
           icon="thumb_up"
           v-if="$q.screen.gt.sm"
         >
-          <span class="q-ml-xs">5 Mn</span>
+          <span class="q-ml-xs">{{data.likeCount}}</span>
           <q-tooltip>Beğeni Sayısı</q-tooltip>
         </q-btn>
         <q-btn

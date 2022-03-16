@@ -19,6 +19,14 @@ class VideoService {
     searchVideos(searchString){
       return http.get("/videos/search",{ params: { searchString: searchString } });
     }
+
+    deleteVideo(videoUrl) {
+      return http.delete("/videos/",{ params: { videoUrl: videoUrl } });
+    }
+
+    addCategory(category) {
+      return http.post("/categories/",category);
+    }
 }
 
 export default new VideoService();

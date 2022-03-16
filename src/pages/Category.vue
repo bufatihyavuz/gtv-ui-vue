@@ -3,7 +3,7 @@
     <navbar />
     <q-page-container>
       <q-btn
-        class="q-mx-sm q-mt-sm"
+        class="filterbtn q-mx-sm q-mt-sm"
         flat
         color="grey"
         outline
@@ -12,17 +12,35 @@
         label="filtreler"
       />
 
-      <q-item class="q-ml-sm" v-model="expanded" v-show="expanded">
-        <q-item-section>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-          commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-          eveniet doloribus ullam aliquid.
-        </q-item-section>
+      <q-item class="filterchooses q-mx-sm q-mt-sm" v-model="expanded" v-show="expanded">
+        <q-list>
+          <q-item-section>Yükleme Tarihi</q-item-section>
+          <q-separator color="grey-9" class="q-mt-sm q-mb-lg" />
+          <q-item-label class="q-mt-sm" caption>
+            <li
+              class="filterchoose q-my-md cursor-pointer"
+              v-for="item in filterList"
+              :key="item.chooseDate"
+            >{{ item.chooseDate }}</li>
+          </q-item-label>
+        </q-list>
+
+        <q-list class="q-ml-xl">
+          <q-item-section>Video Süresi</q-item-section>
+          <q-separator color="grey-9" class="q-mt-sm q-mb-lg" />
+          <q-item-label class="q-mt-sm" caption>
+            <li
+              class="filterchoose q-my-md cursor-pointer"
+              v-for="item in filterList"
+              :key="item.chooseDuration"
+            >{{ item.chooseDuration }}</li>
+          </q-item-label>
+        </q-list>
       </q-item>
 
-      <q-separator class="q-mt-sm q-mx-lg" />
+      <q-separator color="grey-9" class="q-mt-sm q-mx-lg" />
 
-      <div class="row q-pa-sm q-mx-sm">
+      <div class="row q-pa-sm q-mx-sm q-py-sm">
         <card v-for="data in videos" :data="data" :key="data" />
       </div>
     </q-page-container>
@@ -42,11 +60,24 @@ export default {
   data: () => ({
     videos: [],
     dialogIcon: ref(false),
-    categoryId : "",
-    expanded: ref(false)
+    expanded: ref(false),
+    categoryId: "",
+    filterList: [
+      { chooseDate: 'Son bir saat' },
+      { chooseDate: 'Bugün' },
+      { chooseDate: 'Bu hafta' },
+      { chooseDate: 'Bu ay' },
+      { chooseDate: 'Bu yıl' },
+      { chooseDuration: '4 Dakikadan kısa' },
+      { chooseDuration: '4-20 Dakika' },
+      { chooseDuration: '20 Dakikadan Fazla' },]
 
   }),
-  methods : {
+  methods: {
+
+    filterOpen() {
+      this.expanded = !this.expanded
+    },
 
     async videoList() {
       this.categoryId = this.$route.params.id;
@@ -59,19 +90,15 @@ export default {
         });
 
     },
-    filterOpen() {
-      this.expanded = !this.expanded
-    }
-
 
   },
 
-  mounted(){
+  mounted() {
     this.videoList();
   },
 
-  watch : {
-    $route () {
+  watch: {
+    $route() {
       console.log('watcha girdi')
       this.videoList();
     }
@@ -80,4 +107,16 @@ export default {
 }
 
 </script>
+
+<style>
+.filterbtn .q-focus-helper {
+  display: none;
+}
+.filterchoose {
+  font-size: 14px;
+}
+.filterchooses {
+  transition: 0.3s;
+}
+</style>
 
