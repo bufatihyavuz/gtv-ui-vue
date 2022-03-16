@@ -1,5 +1,5 @@
 <template>
-  <!-- Yusuf -->
+  <!-- Yusuf fatih -->
   <li class="video_li col-xs-12 col-sm-6 col-md-3 q-px-sm q-pt-sm q-pb-lg">
     <q-card @click="persistent = true" flat square unelevated class="cursor-pointer">
       <q-img :src="'https://img.youtube.com/vi/' + data.url + '/maxresdefault.jpg'">
