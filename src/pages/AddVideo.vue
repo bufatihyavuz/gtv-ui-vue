@@ -1,15 +1,25 @@
 <template>
   <q-layout class="maincolor" view="hHh lpR fFf" >
     <navbar />
-    <q-page-container>
-      <div class="row q-ma-xl no-wrap ">
-        <q-input  v-model="ytVideoId" class="col" outlined square placeholder="Lütfen video ID'si giriniz.." />
-      </div>
+    <q-page-container class="row">
+      <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md">
+        <q-card class="q-ma-xs q-px-md">
+          <h5 class="q-ma-md q-pt-lg">Video Ekle</h5>
+          <q-card-section>
+            <q-input v-model="ytVideoId" outlined square placeholder="Video ID" />
+            <q-select
+              class="q-my-lg q-mb-xl"
+              v-model="categoryModel"
+              :options="categories"
+              option-label="name"
+              option-value="id"
+              label="Kategori Adı"
+            />
+            <q-btn class="q-mb-md" color="primary" @click="saveVideo()">EKLE</q-btn>
+          </q-card-section>
+        </q-card>
+      </li>
 
-      <div class="row q-ma-xl">
-        <q-select class="col-4" v-model="categoryModel" :options="categories" option-label="name" option-value="id" label="Category Name"/>
-        <q-btn @click="saveVideo()" color="primary q-ma-md" >Kaydet</q-btn>
-      </div>
     </q-page-container>
   </q-layout>
 </template>

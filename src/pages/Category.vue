@@ -3,51 +3,26 @@
     <navbar />
     <q-page-container>
       <q-btn
-        @click="dialogIcon = true"
-        class="q-ma-xs q-mt-md q-mx-md"
+        class="q-mx-sm q-mt-sm"
+        flat
+        color="grey"
         outline
-        color="info"
-        icon="filter_alt"
-        label="Filtrele"
-      ></q-btn>
+        @click="filterOpen"
+        icon="tune"
+        label="filtreler"
+      />
 
-      <q-dialog v-model="dialogIcon">
-        <q-card>
-          <q-card-section class="row items-center q-pa-md">
-            <q-space />
-            <q-btn icon="close" flat round dense v-close-popup />
-          </q-card-section>
+      <q-item class="q-ml-sm" v-model="expanded" v-show="expanded">
+        <q-item-section>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+          commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+          eveniet doloribus ullam aliquid.
+        </q-item-section>
+      </q-item>
 
-          <q-card-section>
-            <q-input  label="Şampiyon Seç"  />
-          </q-card-section>
-        </q-card>
-      </q-dialog>
+      <q-separator class="q-mt-sm q-mx-lg" />
 
-      <q-btn-dropdown outline color="info" icon="sort" label="Sırala" class="q-my-xs q-mt-md" >
-        <q-list>
-          <q-item clickable v-close-popup>
-            <q-item-section>
-              <q-item-label>En popüler</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable v-close-popup>
-            <q-item-section>
-              <q-item-label>Eklenme tarihi (en eski)</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable v-close-popup>
-            <q-item-section>
-              <q-item-label>Eklenme tarihi (en yeni)</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
-      <q-separator class="q-mt-md" />
-
-      <div class="row q-pa-sm">
+      <div class="row q-pa-sm q-mx-sm">
         <card v-for="data in videos" :data="data" :key="data" />
       </div>
     </q-page-container>
@@ -67,7 +42,8 @@ export default {
   data: () => ({
     videos: [],
     dialogIcon: ref(false),
-    categoryId : ""
+    categoryId : "",
+    expanded: ref(false)
 
   }),
   methods : {
@@ -83,6 +59,10 @@ export default {
         });
 
     },
+    filterOpen() {
+      this.expanded = !this.expanded
+    }
+
 
   },
 

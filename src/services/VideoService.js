@@ -15,6 +15,10 @@ class VideoService {
     getCategories(){
       return http.get("/categories");
     }
+
+    searchVideos(searchString){
+      return http.get("/videos/search",{ params: { searchString: searchString } });
+    }
 }
 
 export default new VideoService();

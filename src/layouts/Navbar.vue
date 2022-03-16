@@ -1,14 +1,14 @@
 <template>
   <q-header class="bg-dark" reveal>
     <q-toolbar>
-      <q-btn flat no-caps no-wrap to="/">
-        <q-toolbar-title class="text-weight-bold">TopClip</q-toolbar-title>
+      <q-btn glossy="false" padding="0" dense flat no-caps no-wrap to="/">
+        <q-img width="40px" src="/icons/logo.png" alt="logo" />GTV
       </q-btn>
       <q-space />
 
       <div class="YL__toolbar-input-container row no-wrap">
-        <q-input dense placeholder="Ara" class="col" standout square />
-        <q-btn id="searchbtn" to="/Search" class="YL__toolbar-input-btn" icon="search" flat>
+        <q-input v-model="searchString" placeholder="Ara" class="col" standout square dense />
+        <q-btn id="searchbtn" @click="searchVideos" class="YL__toolbar-input-btn" icon="search" flat>
           <q-tooltip>Ara</q-tooltip>
         </q-btn>
       </div>
@@ -27,13 +27,31 @@
 <script>
 
 import drawer from "layouts/Drawer.vue";
+import VideoService from "src/services/VideoService";
 
 export default {
   props: ["data"],
   data: () => ({
     drawer: false,
-    miniState: true
+    miniState: true,
+    searchString:""
   }),
+  methods : {
+
+    async searchVideos() {
+      console.log("searchVideos")
+      await VideoService.searchVideos(this.searchString).then(res => {
+        console.log("res",res)
+        this.videos = res.data;
+
+      })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
+  },
+
   components: {
     drawer
   },
