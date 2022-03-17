@@ -49,7 +49,7 @@
           icon="thumb_up"
           v-if="$q.screen.gt.sm"
         >
-          <span class="q-ml-xs">{{data.likeCount}}</span>
+          <span class="q-ml-xs">{{ data.likeCount }}</span>
           <q-tooltip>Beğeni Sayısı</q-tooltip>
         </q-btn>
         <q-btn
@@ -60,10 +60,14 @@
           color="grey-8"
           icon="share"
           v-if="$q.screen.gt.sm"
+          @click.prevent="copyTestingCode"
+          @click="changeCopiedMsg()"
+          @mouseover="trigger"
         >
           <span class="q-ml-xs">Paylaş</span>
-          <q-tooltip>Paylaş</q-tooltip>
+          <q-tooltip>{{ shareMsg }}</q-tooltip>
         </q-btn>
+        <input type="hidden" id="testing-code" :value="'https://www.youtube.com/embed/' + data.url" />
       </q-item>
     </q-card>
   </q-dialog>
@@ -75,7 +79,32 @@ export default {
   props: ["data"],
   data: () => ({
     persistent: ref(false),
+    shareMsg: "Paylaş"
   }),
+  methods: {
+    copyTestingCode() {
+      let testingCodeToCopy = document.querySelector('#testing-code')
+      testingCodeToCopy.setAttribute('type', 'text')    // 不是 hidden 才能複製
+      testingCodeToCopy.select()
+
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'kopyalandı' : 'kopyalanamadı';
+      } catch (err) {
+        alert("Video URl'si kopyalanamadı");
+      }
+
+      /* unselect the range */
+      testingCodeToCopy.setAttribute('type', 'hidden')
+      window.getSelection().removeAllRanges()
+    },
+    changeCopiedMsg() {
+      this.shareMsg = "✓ URL Kopyalandı"
+    },
+    trigger() {
+      setTimeout(() => this.shareMsg = 'Paylaş', 5000);
+    }
+  },
 };
 </script>
 

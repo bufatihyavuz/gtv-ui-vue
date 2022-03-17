@@ -8,7 +8,13 @@
 
       <div class="YL__toolbar-input-container row no-wrap">
         <q-input v-model="searchString" placeholder="Ara" class="col" standout square dense />
-        <q-btn id="searchbtn" @click="searchVideos" class="YL__toolbar-input-btn" icon="search" flat>
+        <q-btn
+          id="searchbtn"
+          @click="searchVideos"
+          class="YL__toolbar-input-btn"
+          icon="search"
+          flat
+        >
           <q-tooltip>Ara</q-tooltip>
         </q-btn>
       </div>
@@ -17,7 +23,6 @@
       <q-btn to="/addVideo" round icon="video_call" flat>
         <q-tooltip>VideoYükle</q-tooltip>
       </q-btn>
-
     </q-toolbar>
   </q-header>
 
@@ -34,14 +39,14 @@ export default {
   data: () => ({
     drawer: false,
     miniState: true,
-    searchString:""
+    searchString: ""
   }),
-  methods : {
+  methods: {
 
     async searchVideos() {
       console.log("searchVideos")
       await VideoService.searchVideos(this.searchString).then(res => {
-        console.log("res",res)
+        console.log("res", res)
         this.videos = res.data;
 
       })
@@ -63,14 +68,12 @@ export default {
 </script>
 
 <style lang="sass">
+
 .YL
 
   &__toolbar-input-container
     min-width: 100px
     width: 55%
-    border-style: solid
-    border-color: rgba(0, 0, 0, .12)
-
 </style>
 
 <style>
