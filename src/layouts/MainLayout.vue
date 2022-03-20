@@ -1,9 +1,9 @@
 <template>
-  <q-layout>
+  <q-layout class="maincolor">
     <navbar />
-    <q-page-container class="maincolor">
+    <q-page-container>
       <div class="row q-pa-sm">
-        <card  v-for="data in videos" :data="data" :key="data" />
+        <card v-for="data in videos" :data="data" :key="data" />
       </div>
     </q-page-container>
   </q-layout>
@@ -24,7 +24,7 @@ export default {
     videos: [],
   }),
 
-  methods : {
+  methods: {
 
     async getAll() {
       await VideoService.getAll().then(res => {
@@ -37,12 +37,12 @@ export default {
 
   },
 
-  mounted(){
+  mounted() {
     this.getAll();
   },
 
-  watch : {
-    $route () {
+  watch: {
+    $route() {
       this.getAll();
     }
 
