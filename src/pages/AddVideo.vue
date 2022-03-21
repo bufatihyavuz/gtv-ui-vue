@@ -3,7 +3,7 @@
     <navbar />
     <q-page-container class="row">
       <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md">
-        <q-card class="q-ma-xs q-px-xs">
+        <q-card class="q-ma-xs q-px-sm">
           <h5 class="q-my-md q-mx-md q-pt-lg">Video Ekle</h5>
           <q-card-section>
             <q-form @submit="onSubmit">
@@ -40,7 +40,7 @@
       </li>
 
       <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md">
-        <q-card class="q-ma-xs q-px-xs">
+        <q-card class="q-ma-xs q-px-sm">
           <h5 class="q-my-md q-mx-md q-pt-lg">Video Sil</h5>
           <q-card-section>
             <q-form>
@@ -65,7 +65,7 @@
       </li>
 
       <li class="video_li col-xs-12 col-sm-6 col-md-4 q-px-md q-mb-md">
-        <q-card class="q-ma-xs q-px-xs">
+        <q-card class="q-ma-xs q-px-sm">
           <h5 class="q-my-md q-mx-md q-pt-lg">Kategori Ekle</h5>
           <q-card-section>
             <q-form>
