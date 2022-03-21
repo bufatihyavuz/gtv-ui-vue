@@ -12,9 +12,9 @@
         label="filtreler"
       />
 
-      <q-item class="filterchooses q-mx-sm q-mt-sm" v-model="expanded" v-show="expanded">
+      <q-item class="q-mx-sm q-mt-sm" v-model="expanded" v-show="expanded">
         <q-list>
-          <q-item-section>Yükleme Tarihi</q-item-section>
+          <q-item-section>Yüklenme Tarihi</q-item-section>
           <q-separator color="grey-9" class="q-mt-sm q-mb-lg" />
           <q-item-label class="q-mt-sm" caption>
             <li
@@ -114,9 +114,6 @@ export default {
 }
 .filterchoose {
   font-size: 14px;
-}
-.filterchooses {
-  transition: 0.3s;
 }
 </style>
 
