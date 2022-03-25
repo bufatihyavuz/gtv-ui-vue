@@ -24,7 +24,9 @@ export default {
     videos: [],
   }),
 
+
   methods: {
+
 
     async getAll() {
       await VideoService.getAll().then(res => {
@@ -50,12 +52,3 @@ export default {
 
 };
 </script>
-
-<style>
-ul {
-  list-style-type: none;
-  display: inline-block;
-  padding-inline-start: 0px;
-  margin-left: 16px;
-}
-</style>
