@@ -5,7 +5,7 @@ const routes = [
     children: [{ path: "", component: () => import("pages/Index.vue") }],
   },
   {
-    path: "/categories/:id",
+    path: "/categories/:id/:pageNo",
     component: () => import("src/pages/Category.vue"),
   },
   {
@@ -19,7 +19,6 @@ const routes = [
     path: "/:catchAll(.*)*",
     component: () => import("pages/Error404.vue"),
   },
-
 ];
 
 export default routes;

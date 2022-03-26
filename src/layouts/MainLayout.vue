@@ -2,9 +2,16 @@
   <q-layout>
     <navbar />
     <q-page-container class="maincolor">
-      <div class="row q-pa-sm">
-        <card  v-for="data in videos" :data="data" :key="data" />
-      </div>
+      <q-infinite-scroll :initial-index="-1" @load="onLoad" :offset="10">
+        <div class="row q-pa-sm">
+          <card v-for="(data, index) in videos" :data="data" :key="index" />
+        </div>
+        <template v-slot:loading>
+          <div class="row justify-center q-my-md">
+            <q-spinner-dots color="primary" size="40px"></q-spinner-dots>
+          </div>
+        </template>
+      </q-infinite-scroll>
     </q-page-container>
   </q-layout>
 </template>
@@ -12,7 +19,7 @@
 <script>
 import card from "components/Card.vue";
 import navbar from "layouts/Navbar";
-import VideoService from "../services/VideoService"
+import VideoService from "../services/VideoService";
 
 export default {
   components: {
@@ -21,41 +28,61 @@ export default {
   },
 
   data: () => ({
+    videoPagination: null,
     videos: [],
   }),
 
-  methods : {
+  methods: {
+    onLoad(index, done) {
+      console.log("index", index);
 
-    async getAll() {
-      await VideoService.getAll().then(res => {
-        this.videos = res.data;
-      })
-        .catch(e => {
-          console.log(e);
-        });
-    }
+      if (index === 0) {
+        VideoService.getAll(index)
+          .then((res) => {
+            if (res.data) {
+              this.videoPagination = res.data;
+              this.videos.push(...this.videoPagination.videos);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+        done();
+      } else {
+        setTimeout(() => {
+          VideoService.getAll(index)
+            .then((res) => {
+              if (res.data) {
+                this.videoPagination = res.data;
+                this.videos.push(...this.videoPagination.videos);
+                return this.videoPagination;
+              }
+            })
+            .then((videos) => {
+              if (index === videos.totalPage) {
+                done(true);
+              }
+            })
+            .catch((e) => {
+              console.log(e);
+            });
 
+          done();
+        }, 3000);
+      }
+    },
   },
 
-  mounted(){
-    this.getAll();
+  mounted() {
+    /* console.log("mounted girdi")
+     this.getAll();*/
   },
 
-  watch : {
-    $route () {
-      this.getAll();
-    }
-
-  }
-
+  watch: {
+    /*     $route () {
+           console.log("watch girdi")
+           this.getAll();
+         }*/
+  },
 };
 </script>
-
-<style>
-ul {
-  list-style-type: none;
-  display: inline-block;
-  padding-inline-start: 0px;
-  margin-left: 16px;
-}
-</style>

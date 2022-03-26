@@ -1,32 +1,37 @@
 import http from "../common/http-common";
+
 class VideoService {
-    getAll() {
-        return http.get("/videos");
-      }
+  getAll() {
+    return http.get("/videos");
+  }
 
-    getVideosByCategoryId(categoryId){
-      return http.get("/videos/categories/"+categoryId);
-    }
+  getAll(pageNo) {
+    return http.get("/videos/" + pageNo);
+  }
 
-    saveVideos(videosInput){
-      return http.post("/videos/",videosInput);
-    }
+  getVideosByCategoryId(categoryId,pageNo) {
+    return http.get("/videos/categories/" + categoryId + "/"  + pageNo);
+  }
 
-    getCategories(){
-      return http.get("/categories");
-    }
+  saveVideos(videosInput) {
+    return http.post("/videos/", videosInput);
+  }
 
-    searchVideos(searchString){
-      return http.get("/videos/search",{ params: { searchString: searchString } });
-    }
+  getCategories() {
+    return http.get("/categories");
+  }
 
-    deleteVideo(videoUrl) {
-      return http.delete("/videos/",{ params: { videoUrl: videoUrl } });
-    }
+  searchVideos(searchString) {
+    return http.get("/videos/search", { params: { searchString: searchString } });
+  }
 
-    addCategory(category) {
-      return http.post("/categories/",category);
-    }
+  deleteVideo(videoUrl) {
+    return http.delete("/videos/", { params: { videoUrl: videoUrl } });
+  }
+
+  addCategory(category) {
+    return http.post("/categories/", category);
+  }
 }
 
 export default new VideoService();
