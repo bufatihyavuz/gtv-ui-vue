@@ -3,7 +3,10 @@
   <li class="video_li col-xs-12 col-sm-6 col-md-3 q-px-sm q-pt-sm q-pb-lg">
     <q-card @click="persistent = true" flat square unelevated class="cursor-pointer">
       <q-img :src="'https://img.youtube.com/vi/' + data.url + '/maxresdefault.jpg'">
-        <div class="absolute-bottom-right text-subtitle2" style="padding:2px 8px 2px 8px">3:50</div>
+        <div
+          class="absolute-bottom-right text-subtitle2"
+          style="padding:2px 8px 2px 8px"
+        >{{ data.duration }}</div>
       </q-img>
       <q-list class="maincolor q-pl-xs">
         <q-item-section>

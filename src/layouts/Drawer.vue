@@ -1,5 +1,6 @@
 <template>
   <q-drawer
+    class="drawer"
     v-model="drawer"
     show-if-above
     mini-to-overlay
@@ -51,7 +52,6 @@ export default {
     drawer: ref(false),
     miniState: ref(true),
     menuItem: [],
-    DrawBtn: ref(false),
     deg: 0,
     categoryName: ref(false),
     MiniTooltip: ref(false)
@@ -106,5 +106,9 @@ export default {
 }
 .transition {
   transition: transform 0.5s ease-in-out;
+}
+.drawer {
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 </style>
