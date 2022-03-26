@@ -57,12 +57,13 @@
                   >
                     <template v-slot:append>
                       <q-icon
-                        v-show="removeSearch"
+                        v-if="search !== ''"
                         name="close"
                         @click="search = ''"
                         class="cursor-pointer"
                       />
                     </template>
+
                     <template v-slot:prepend>
                       <q-icon name="search" class="cursor-pointer" />
                     </template>

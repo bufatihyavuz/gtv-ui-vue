@@ -52,7 +52,6 @@ export default {
     drawer: ref(false),
     miniState: ref(true),
     menuItem: [],
-    DrawBtn: ref(false),
     deg: 0,
     categoryName: ref(false),
     MiniTooltip: ref(false)
