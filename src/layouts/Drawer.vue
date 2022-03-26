@@ -33,7 +33,7 @@
     </div>
 
     <div v-for="data in menuItem" :key="data">
-      <q-item :to="'/categories/' + data.id" id="logos" clickable v-ripple>
+      <q-item :to="'/categories/' + data.id + '/0'" id="logos" clickable v-ripple>
         <q-item-section aria-pressed="true" avatar>
           <q-img width="35px" :src="'/icons/categories/' + data.iconName" />
         </q-item-section>
