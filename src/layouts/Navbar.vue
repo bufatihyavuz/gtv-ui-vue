@@ -48,7 +48,6 @@
                   </q-btn>-->
                   <q-input
                     v-model="search"
-                    @click="removeSearch = true"
                     type="text"
                     placeholder="Ara"
                     class="col"
@@ -96,8 +95,8 @@
         <q-tooltip>VideoYükle</q-tooltip>
       </q-btn>-->
     </q-toolbar>
-    <drawer />
   </q-header>
+  <drawer />
 </template>
 
 <script>
@@ -114,7 +113,6 @@ export default {
     openDiaCard: ref(false),
     videos: [],
     search: "",
-    removeSearch: false
   }),
 
   components: {
